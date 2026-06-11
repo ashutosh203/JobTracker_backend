@@ -3,7 +3,8 @@
 import dotenv from 'dotenv';
 import app from './src/app.js';
 import connectDB from './src/config/db.js';
-import './utils/log.js';
+import './src/utils/log.js';
+
 dotenv.config();
 
 connectDB();

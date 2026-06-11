@@ -2,6 +2,7 @@
 
 import Candidate from '../schema/candidate_Create_Account_Schema.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export const createCandidateAccount = async (req, res) => {
     try {
@@ -17,6 +18,19 @@ export const createCandidateAccount = async (req, res) => {
             password: hashedPassword,
         });
 
+        const token = jwt.sign(
+            {
+                role: candidate.role,
+                _id: candidate._id,
+                Email: candidate.email,
+            },
+
+            process.env.JWT_SECRET,
+            {
+                expiresIn: process.env.expires,
+            },
+        );
+
         return res.status(201).json({
             success: true,
             message: 'Account Created Successfully',
@@ -26,6 +40,7 @@ export const createCandidateAccount = async (req, res) => {
                 name: candidate.Name,
                 email: candidate.email,
                 phone: candidate.phone,
+                token,
             },
         });
     } catch (error) {

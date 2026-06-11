@@ -31,14 +31,15 @@ export class CandidateHelper {
     }
 
     FieldValidation(name, email, phone, password) {
+
         if (password === null) {
             const value = [name, email, phone];
-            if (!name.trim() || !email.trim() || !phone.trim()) {
+            if (!name?.trim() || !email?.trim() || !phone?.trim()) {
                 return {
                     message: 'All fields are required',
-                    name: !name,
-                    email: !email,
-                    phone: !phone,
+                    name: !name || !name?.trim(),
+                    email: !email || !email?.trim(),
+                    phone: !phone || !phone?.trim(),
                 };
             } else if (value) {
                 let message;
@@ -92,7 +93,7 @@ export class CandidateHelper {
                         message: 'Name should contain only letters and spaces',
                         name: false,
                     };
-                } else if (value.length < 2 || value.length > 30) {
+                } else if (value.length < 3 || value.length > 30) {
                     return {
                         message: 'Name should be between 2 and 30 characters',
                         name: false,
@@ -108,9 +109,19 @@ export class CandidateHelper {
                 }
                 return false;
             case 'phone':
-                return /^\d{10}$/.test(value);
+                 if (/^\d{10}$/.test(value)) {
+                    return {
+                        message: 'only number allowed',
+                        email: false,
+                    };
+                }
             case 'password':
-                return password.length === 5;
+                if ( password.length === 5) {
+                    return {
+                        message: 'Password max 5 Latter',
+                        email: false,
+                    };
+                }
             default:
                 return false;
         }
