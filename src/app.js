@@ -14,10 +14,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', createAccount);// CANDIDATE ACCOUNT CREATE
+app.get('/', (req, res) => {
+ res.send('Job Portal Backend Running');
+});
+app.use('/', createAccount); // CANDIDATE ACCOUNT CREATE
 app.use('/ReSingUp', recruiterCreateAccount); // RECRUITER ACCOUNT CREATE
-app.get('/AllJobsDetail', allJobsDetails)
-app.get('/jobsDetail/:id', candidateJobDetail)
+app.get('/AllJobsDetail', allJobsDetails);
+app.get('/jobsDetail/:id', candidateJobDetail);
 app.post('/tokenExpires', checkTokenExpires);
 app.post('/login', userLogInDataValidation, userLogIn);
 export default app;
