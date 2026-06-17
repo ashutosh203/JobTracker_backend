@@ -19,25 +19,48 @@ export const verifyEmail = async (req, res, next) => {
   });
 
   // create service
+  // const transporter = nodemailer.createTransport({
+  //  service: 'gmail',
+  //  auth: {
+  //   user: process.env.EMAIL,
+  //   pass: process.env.APP_PASSWORD,
+  //  },
+  // });
+
+
+
   const transporter = nodemailer.createTransport({
-   service: 'gmail',
+   host: 'smtp.gmail.com',
+   port: 465,
+   secure: true,
    auth: {
     user: process.env.EMAIL,
     pass: process.env.APP_PASSWORD,
    },
   });
 
+
   // verify coaction
   // await transporter.verify();
   // console.log('SMTP Connected');
 
   // send to otp in your mail
+  console.log('Before sendMail');
+  console.log('EMAIL:', process.env.EMAIL);
+  console.log(
+   'APP_PASSWORD:',
+   process.env.APP_PASSWORD ? 'FOUND' : 'NOT FOUND',
+  );
+
+
   await transporter.sendMail({
    from: process.env.EMAIL,
    to: email,
    subject: 'OTP Verification',
    text: `Your OTP is ${otp}`,
   });
+
+  console.log('After sendMail');
   // sand response to user
   res.status(200).json({
    message: 'OTP sent to Email',
