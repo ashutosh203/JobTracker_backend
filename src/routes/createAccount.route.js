@@ -6,21 +6,30 @@ import { candidateFieldValidation } from '../middleware/candidateFieldValidation
 import { verifyEmail } from '../controllers/verifyEmail.controller.js';
 import { verifyEmailOtp } from '../controllers/verifyEmailOtp.controller.js';
 import { createCandidateAccount } from '../controllers/createCandidateAccount.controller.js';
+import verifyToken from '../middleware/verifyToken.js';
+import { candidateJobApply } from '../controllers/candidateJobApply.controller.js';
+import { candidateAppliedJobsDetails } from '../controllers/candidateAppliedJobsDetails.controller.js';
 
 const createAccount = express.Router();
 
 createAccount.post(
-    '/emailVerify',
-    checkUserExists,
-    candidateFieldValidation,
-    verifyEmail,
+ '/emailVerify',
+ checkUserExists,
+ candidateFieldValidation,
+ verifyEmail,
 );
 createAccount.post('/verifyOtp', verifyEmailOtp);
 createAccount.post(
-    '/createAccount',
-    checkUserExists,
-    candidateFieldValidation,
-    createCandidateAccount,
+ '/createAccount',
+ checkUserExists,
+ candidateFieldValidation,
+ createCandidateAccount,
+);
+createAccount.post('/jobApply/:id', verifyToken, candidateJobApply);
+createAccount.get(
+ '/candidateAppliedJobsDetails',
+ verifyToken,
+ candidateAppliedJobsDetails,
 );
 
 export { createAccount };

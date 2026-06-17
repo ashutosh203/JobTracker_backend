@@ -2,24 +2,29 @@
 
 import mongoose from 'mongoose';
 
-const candidateAccount = new mongoose.Schema(
+const recruiterAccount = new mongoose.Schema(
  {
-  Name: {
+  recruiterName: {
    type: String,
-   required: [true, 'Candidate Name is required'],
+   required: [true, 'Recruiter Name is required'],
    trim: true,
   },
-  email: {
+  companyName: {
    type: String,
-   required: [true, 'Candidate Email is required'],
-   unique: true,
-   lowercase: true,
+   required: [true, 'companyName Name is required'],
+   trim: true,
   },
   phone: {
    type: Number,
    required: [true, 'Phone number is required'],
    unique: true,
    match: [/^\d{10}$/, 'Phone number must be exactly 10 digits'],
+  },
+  email: {
+   type: String,
+   required: [true, 'Candidate Email is required'],
+   unique: true,
+   lowercase: true,
   },
   password: {
    type: String,
@@ -31,12 +36,17 @@ const candidateAccount = new mongoose.Schema(
    type: String,
    required: [true, 'role is required'],
   },
+  address: {
+   type: String,
+  },
+  location: {
+   type: String,
+  },
  },
  {
   timestamps: true,
  },
 );
 
-const Candidate = mongoose.model('Candidate', candidateAccount);
-
-export default Candidate;
+const Recruiter = mongoose.model('Recruiter', recruiterAccount);
+export default Recruiter;
