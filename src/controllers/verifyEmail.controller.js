@@ -5,9 +5,8 @@ import Otp from '../schema/otpSchema.js';
 import { CandidateHelper } from '../models/candidate.models.js';
 
 export const verifyEmail = async (req, res, next) => {
+ const { email } = req.body;
  try {
-  const { email } = req.body;
-
   const otp = Math.floor(100000 + Math.random() * 900000);
   console.log('otp is here ', otp);
   // delete existing otp for email
@@ -29,7 +28,7 @@ export const verifyEmail = async (req, res, next) => {
   });
 
   // verify coaction
-  await transporter.verify();
+  // await transporter.verify();
   // console.log('SMTP Connected');
 
   // send to otp in your mail
