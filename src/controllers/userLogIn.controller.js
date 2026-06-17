@@ -12,7 +12,7 @@ export const userLogIn = async (req, res) => {
   const recruiter = await Recruiter.findOne({ email });
   const candidate = await Candidate.findOne({ email });
 
-  console.log(recruiter, candidate);
+  // console.log(recruiter, candidate);
 
   if (!recruiter && !candidate) {
    return res.status(404).json({

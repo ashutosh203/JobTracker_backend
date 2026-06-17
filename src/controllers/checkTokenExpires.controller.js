@@ -4,9 +4,9 @@ import jwt from 'jsonwebtoken';
 export const checkTokenExpires = async (req, res) => {
  try {
   const { token } = req.body;
-  console.log(token)
+  // console.log(token)
   const verifyToken = await jwt.verify(token, process.env.JWT_SECRET);
-  console.log('this is a token',verifyToken)
+  // console.log('this is a token',verifyToken)
   if (verifyToken) {
    return res.status(200).json({
     success: true,

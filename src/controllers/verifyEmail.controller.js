@@ -30,7 +30,7 @@ export const verifyEmail = async (req, res, next) => {
 
   // verify coaction
   await transporter.verify();
-  console.log('SMTP Connected');
+  // console.log('SMTP Connected');
 
   // send to otp in your mail
   await transporter.sendMail({

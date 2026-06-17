@@ -8,7 +8,7 @@ export const checkUserExists = async (req, res, next) => {
  if (req.body.role === 'candidate') {
   const Helper = new CandidateHelper();
   const { email, phone } = req.body;
-  console.log('this first');
+  // console.log('this first');
   const messages2 = await Recruiter.exists({ email: email }); // userExist
   const messages = await Helper.UserExists(email, phone); // userExist
 

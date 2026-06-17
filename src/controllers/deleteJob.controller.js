@@ -1,7 +1,7 @@
 /** @format */
 
-import Jobs from "../schema/recruiterJobCreateschema.js";
-
+import jobsApply from '../schema/candidate_jobs_Apply_Schema.js';
+import Jobs from '../schema/recruiterJobCreateschema.js';
 
 export const deleteJob = async (req, res) => {
  try {
@@ -12,7 +12,10 @@ export const deleteJob = async (req, res) => {
    _id: id,
    recruiterId,
   });
-
+// all candidate ne jo apply kiya hai wo sab delete ho jayega 
+  const deletedApplications = await jobsApply.deleteMany({
+   JobsId: id,
+  });
   if (!deletedJob) {
    return res.status(404).json({
     success: false,

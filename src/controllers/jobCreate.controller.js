@@ -16,7 +16,7 @@ export const jobCreate = async (req, res) => {
   } = req.body;
   const { _id: recruiterId } = req.user;
   const profile = await Recruiter.findById(recruiterId);
-  console.log(profile);
+  // console.log(profile);
   const newJob = await jobs.create({
    companyName: profile.companyName,
    JobTitle,
