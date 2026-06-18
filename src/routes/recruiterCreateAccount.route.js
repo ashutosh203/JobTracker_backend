@@ -2,7 +2,6 @@
 
 import express from 'express';
 import { checkUserExists } from '../middleware/checkUserExists.middleware.js';
-import { verifyEmail } from '../controllers/verifyEmail.controller.js';
 import { recruiterDataValidation } from '../middleware/recruiterDataValidation.middleware.js';
 import { recruiterAccountCreate } from '../controllers/recruiterAccountCreate.controller.js';
 import verifyToken from '../middleware/verifyToken.js';
