@@ -11,14 +11,6 @@ import { candidateJobApply } from '../controllers/candidateJobApply.controller.j
 import { candidateAppliedJobsDetails } from '../controllers/candidateAppliedJobsDetails.controller.js';
 
 const createAccount = express.Router();
-
-createAccount.post(
- '/emailVerify',
- checkUserExists,
- candidateFieldValidation,
- verifyEmail,
-);
-createAccount.post('/verifyOtp', verifyEmailOtp);
 createAccount.post(
  '/createAccount',
  checkUserExists,

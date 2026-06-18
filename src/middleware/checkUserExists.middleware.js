@@ -29,13 +29,15 @@ export const checkUserExists = async (req, res, next) => {
   const emailExists = await Candidate.exists({ email: email });
   messages
    ? res.status(400).json({
-      succuss: false,
-      messages: 'Your Email all ready exist',
+     succuss: false,
+     email : true,
+      messages: 'Email all ready exist',
      })
    : emailExists
      ? res.status(400).json({
-        succuss: false,
-        messages: 'Your Email all ready exist',
+       succuss: false,
+       email: true , 
+        messages: 'Email all ready exist',
        })
      : next();
  }

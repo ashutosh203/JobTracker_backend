@@ -18,7 +18,6 @@ const recruiterCreateAccount = express.Router();
 
 
 
-recruiterCreateAccount.post('/emailVerify', checkUserExists, verifyEmail);
 recruiterCreateAccount.post('/recruiterAccountCreate', checkUserExists, recruiterDataValidation, recruiterAccountCreate);
 recruiterCreateAccount.get('/recruiterProfile', verifyToken, recruiterProfile);
 recruiterCreateAccount.post('/jobsCreate', verifyToken , jobsValidation, jobCreate );
